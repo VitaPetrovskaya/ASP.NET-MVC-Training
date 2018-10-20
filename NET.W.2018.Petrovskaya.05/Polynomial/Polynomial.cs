@@ -11,7 +11,6 @@ namespace Polynomial
      /// </summary>
      class Polynomial
      {
-
           private readonly double[] coefficients;
 
           /// <summary>
