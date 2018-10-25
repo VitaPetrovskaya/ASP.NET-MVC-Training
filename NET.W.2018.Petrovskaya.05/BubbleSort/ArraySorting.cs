@@ -9,15 +9,15 @@ namespace BubbleSort
      /// <summary>
      /// Class contains array sorting methods.
      /// </summary>
-     class ArraySorting
+     public class ArraySorting
      {
-          enum TypeOfSort
+          public enum TypeOfSort
           {
                increase,
                decrease
           }
 
-          enum ParamOfSort
+          public enum ParamOfSort
           {
                sum,
                maxElem,
@@ -58,7 +58,8 @@ namespace BubbleSort
                BubleSortBySum(ref arr, TypeOfSort.decrease, ParamOfSort.minElem);
           }
           #endregion
-          
+
+
           /// <summary>
           /// Buble sorting jagged array.
           /// </summary>
@@ -73,6 +74,10 @@ namespace BubbleSort
           /// </param>
           private static void BubleSortBySum(ref int[][] arr, TypeOfSort type, ParamOfSort param)
           {
+               if(arr == null)
+                    throw new ArgumentException(null);
+               if (arr.Length <= 0)
+                    throw new ArgumentException(nameof(arr));
                for (int i = 0; i < arr.Length; i++)
                {
                     for (int j = 0; j < arr.Length - 1 - i; j++)
@@ -83,7 +88,7 @@ namespace BubbleSort
                                    {
                                         if (type == TypeOfSort.increase && Sum(arr[j]) > Sum(arr[j + 1]))
                                              Swap(ref arr[j], ref arr[j + 1]);
-                                        if (type == TypeOfSort.decrease && Sum(arr[j]) < Sum(arr[j + 1]))
+                                        if (type == TypeOfSort.decrease && Sum(arr[j]) <  Sum(arr[j + 1]))
                                              Swap(ref arr[j], ref arr[j + 1]);
                                         break;
                                    }
@@ -97,9 +102,9 @@ namespace BubbleSort
                                    }
                               case ParamOfSort.minElem:
                                    {
-                                        if (type == TypeOfSort.increase && Min(arr[j]) > Min(arr[j + 1]))
+                                        if (type == TypeOfSort.increase && Min(arr[j]) < Min(arr[j + 1]))
                                              Swap(ref arr[j], ref arr[j + 1]);
-                                        if (type == TypeOfSort.decrease && Min(arr[j]) < Min(arr[j + 1]))
+                                        if (type == TypeOfSort.decrease && Min(arr[j]) > Min(arr[j + 1]))
                                              Swap(ref arr[j], ref arr[j + 1]);
                                         break;
                                    }
