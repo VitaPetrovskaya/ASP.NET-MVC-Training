@@ -24,7 +24,12 @@ namespace Book
           {
                Path = path;
           }
-
+          /// <summary>
+          /// Read data about books from file.
+          /// </summary>
+          /// <returns>
+          /// List of books.
+          /// </returns>
           public List<Book> GetBookList()
           {
                List<Book> books = new List<Book>();
@@ -46,7 +51,10 @@ namespace Book
                }
                return books;
           }
-
+          /// <summary>
+          /// Save current list of books in binary file.
+          /// </summary>
+          /// <param name="books"></param>
           public void Save(List<Book> books)
           {
                if (new FileInfo(Path).Length != 0)

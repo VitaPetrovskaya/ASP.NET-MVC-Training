@@ -8,6 +8,6 @@ namespace Book
 {
      public interface ISortBooksBy
      {
-          List<Book> SortBooksByTag();
+          IEnumerable<Book> SortBooksByTag(List<Book> books);
      }
 }

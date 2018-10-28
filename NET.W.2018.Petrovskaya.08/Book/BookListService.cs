@@ -8,7 +8,7 @@ namespace Book
 {
      class BookListService
      {
-          private List<Book> listOfBooks = new List<Book>();
+          public List<Book> listOfBooks = new List<Book>();
           private BookListStorage bookStorage;
 
           public BookListService(BookListStorage storage)
@@ -20,35 +20,58 @@ namespace Book
                bookStorage = storage;
                listOfBooks = bookStorage.GetBookList();
           }
-
+          /// <summary>
+          /// Add book to list.
+          /// </summary>
+          /// <param name="book"></param>
           public void AddBook(Book book)
           {
                if(IsExist(book))
                     throw new ArgumentException();
                listOfBooks.Add(book);
           }
-
+          /// <summary>
+          /// Remove book from list.
+          /// </summary>
+          /// <param name="book"></param>
           public void RemoveBook(Book book)
           {
                if (IsExist(book))
                     throw new ArgumentException();
                listOfBooks.Remove(book);
           }
-
+          /// <summary>
+          /// Find book by criterial with the help of interface variable.
+          /// </summary>
+          /// <param name="criterion">
+          /// Interface variable that implements the search method.
+          /// </param>
+          /// <returns>
+          /// Required book.
+          /// </returns>
           public Book FindBookByTag(IFindBookBy criterion)
           {
                if (criterion == null)
                     throw new ArgumentNullException();
-               return criterion.FindBookByTag();
+               return criterion.FindBookByTag(listOfBooks);
           }
-
+          /// <summary>
+          /// Sort list of books by criterion.
+          /// </summary>
+          /// <param name="criterion">
+          /// Interface variable that implements the sorting method.
+          /// </param>
           public void SortBooksByTag(ISortBooksBy criterion)
           {
                if (criterion == null)
                     throw new ArgumentNullException();
-               listOfBooks = criterion.SortBooksByTag();
+               listOfBooks = criterion.SortBooksByTag(listOfBooks).ToList();
           }
-
+          /// <summary>
+          /// Check existence of the book.
+          /// </summary>
+          /// <param name="book"></param>
+          /// <returns></returns>
           private bool IsExist(Book book)
           {
                if (book == null)
@@ -58,11 +81,12 @@ namespace Book
                          return true;
                return false;
           }
-
+          /// <summary>
+          /// Save list to file.
+          /// </summary>
           public void SaveToStorage()
           {
                bookStorage.Save(listOfBooks);
-               //listOfBooks = bookStorage.GetBookList();
           }
      }
 }

@@ -6,21 +6,17 @@ using System.Threading.Tasks;
 
 namespace Book
 {
-     class SortBookByTitle: ISortBooksBy
+     class SortBooksByTitle: ISortBooksBy
      {
           public List<Book> listOfBooks;
 
-          public SortBookByTitle(List<Book> books)
+          public IEnumerable<Book> SortBooksByTag(List<Book> books)
           {
                listOfBooks = books;
-          }
-
-          public List<Book> SortBooksByTag()
-          {
                var sortedBooks = from b in listOfBooks
                                  orderby b.Title
                                  select b;
-               return (List<Book>)sortedBooks;
+               return sortedBooks;
           }
      }
 }

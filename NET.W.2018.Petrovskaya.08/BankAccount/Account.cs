@@ -68,7 +68,12 @@ namespace BankAccount
                bonus = 0;
                gradation = input_gradation;
           }
-
+          /// <summary>
+          /// Add money to amount of account.
+          /// </summary>
+          /// <param name="money">
+          /// Adding money.
+          /// </param>
           public void PutMoney(double money)
           {
                if(closeAccount)
@@ -77,7 +82,12 @@ namespace BankAccount
                bonus += gradation.PutMoney(money);
                SaveToFile();
           }
-
+          /// <summary>
+          /// Take money from amount of account.
+          /// </summary>
+          /// <param name="money">
+          /// Taking money.
+          /// </param>
           public void TakeMoney(double money)
           {
                if (closeAccount)
@@ -91,13 +101,20 @@ namespace BankAccount
           {
                return new Account(this.OwnerName, this.OwnerSurname, input_gradation);
           }
-
+          /// <summary>
+          /// Close account - taking and put ting are not available.
+          /// </summary>
           public void CloseAccount()
           {
                closeAccount = true;
                this.Amount = 0;
           }
-
+          /// <summary>
+          /// Find account if binary file for changing data.
+          /// </summary>
+          /// <returns>
+          /// Position in file to start write new information.
+          /// </returns>
           public long FindAccountInFile()
           {
                long position = 0;
@@ -132,7 +149,9 @@ namespace BankAccount
                }
                return position;
           }
-
+          /// <summary>
+          /// Save changes in binary file.
+          /// </summary>
           public void SaveToFile()
           {
                int pos = (int)FindAccountInFile();

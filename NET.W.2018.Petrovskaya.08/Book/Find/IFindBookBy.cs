@@ -8,6 +8,6 @@ namespace Book
 {
      public interface IFindBookBy
      {
-          Book FindBookByTag();
+          Book FindBookByTag(List<Book> books);
      }
 }

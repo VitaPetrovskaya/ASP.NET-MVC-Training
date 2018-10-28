@@ -20,6 +20,10 @@ namespace Book
                BookListService service = new BookListService(storage);
                service.AddBook(b1);
                service.AddBook(b2);
+               service.SortBooksByTag(new SortBooksByTitle());
+               foreach (Book b in service.listOfBooks)
+                    Console.WriteLine(b.Title);
+               Console.WriteLine(service.FindBookByTag(new FindBookByTitle("Идиот")).ToString());
                service.SaveToStorage();
                Console.ReadLine();
           }

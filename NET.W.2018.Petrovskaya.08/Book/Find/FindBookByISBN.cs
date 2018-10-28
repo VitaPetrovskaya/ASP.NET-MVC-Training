@@ -11,14 +11,14 @@ namespace Book
           public string ISBN;
           public List<Book> listOfBooks;
 
-          public FindBookByISBN(string isbn, List<Book> books)
+          public FindBookByISBN(string input_isbn)
           {
-               ISBN = isbn;
-               listOfBooks = books;
+               ISBN = input_isbn;
           }
 
-          public Book FindBookByTag()
+          public Book FindBookByTag(List<Book> books)
           {
+               listOfBooks = books;
                foreach (Book bookInList in listOfBooks)
                     if (bookInList.ISBN == ISBN)
                          return bookInList;

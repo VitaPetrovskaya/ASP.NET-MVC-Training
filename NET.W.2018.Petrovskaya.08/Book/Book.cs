@@ -82,12 +82,25 @@ namespace Book
                NumOfPages = input_numOfPages;
                Price = input_price;
           }
-
+          /// <summary>
+          /// Present the book as a string.
+          /// </summary>
+          /// <returns>
+          /// String with book's characteristic.
+          /// </returns>
           public override string ToString()
           {
                return "ISBN:" + ISBN + " Author:" + Author + " Title:"+ Title + " Publisher:" + Publisher + " Year:" + Year.ToString() + " Number of pages:" + NumOfPages.ToString() + " Price:" + Math.Round(Price, 2).ToString();
           }
-
+          /// <summary>
+          /// Check input object and current book for equality.
+          /// </summary>
+          /// <param name="obj">
+          /// Object for checking.
+          /// </param>
+          /// <returns>
+          /// True if they are equal. False if they are not.
+          /// </returns>
           public override bool Equals(object obj)
           {
                var book = obj as Book;
@@ -98,12 +111,23 @@ namespace Book
                     return true;
                return false;
           }
-
+          /// <summary>
+          /// Find hash by ISBN
+          /// </summary>
+          /// <returns></returns>
           public override int GetHashCode()
           {
                return ISBN.GetHashCode();
           }
-
+          /// <summary>
+          /// Check input book and current book for equality.
+          /// </summary>
+          /// <param name="book">
+          /// Book for checking.
+          /// </param>
+          /// <returns>
+          /// True if they are equal. False if they are not.
+          /// </returns>
           public bool Equals(Book book)
           {
                if (book == null)
@@ -119,7 +143,11 @@ namespace Book
                var book = obj as Book;
                return CompareTo(book);
           }
-
+          /// <summary>
+          /// Compare books by author and title alphabetically.
+          /// </summary>
+          /// <param name="book"></param>
+          /// <returns></returns>
           public int CompareTo(Book book)
           {
                if (book == null)
