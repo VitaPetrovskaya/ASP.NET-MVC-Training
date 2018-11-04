@@ -6,8 +6,23 @@ using System.Threading.Tasks;
 
 namespace StringExtension
 {
-    public static class Parser
-    {
+     /// <summary>
+     /// Class contains static method for transfering from one number system to another.
+     /// </summary>
+     public static class Parser
+     {
+          /// <summary>
+          /// Transfer number to decimal system.
+          /// </summary>
+          /// <param name="source">
+          /// String representation of a number.
+          /// </param>
+          /// <param name="base">
+          /// Original number system.
+          /// </param>
+          /// <returns>
+          /// Number in decimal system.
+          /// </returns>
           public static int ToDecimal(this string source, int @base)
           {
                if (ReferenceEquals(source, null))
@@ -15,6 +30,16 @@ namespace StringExtension
                IConvertNumber convert = GetNameOfType(@base);
                return convert.ConvertToDecimal(source.ToUpper());
           }
+
+          /// <summary>
+          /// Find required class for transfering.
+          /// </summary>
+          /// <param name="base">
+          /// Original number system.
+          /// </param>
+          /// <returns>
+          /// Class instance.
+          /// </returns>
           private static IConvertNumber GetNameOfType(int @base)
           {
                switch (@base)
@@ -37,6 +62,5 @@ namespace StringExtension
                     default: throw new ArgumentOutOfRangeException() ;
                }
           }
-           
-    }
+     }
 }

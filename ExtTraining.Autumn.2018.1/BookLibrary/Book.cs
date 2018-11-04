@@ -62,6 +62,15 @@ namespace BookLibrary
                Year = input_year;
           }
 
+          /// <summary>
+          /// Present info about book in string.
+          /// </summary>
+          /// <param name="stringFormat">
+          /// Show how to present the info.
+          /// </param>
+          /// <returns>
+          /// String with info.
+          /// </returns>
           public string ToString(IStringFormat stringFormat)
           {
                if (stringFormat == null)
