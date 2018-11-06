@@ -26,36 +26,36 @@ namespace BubbleSort
           #region Sorting by sums
           public static void BubbleSortOfSumRowsInc(ref int[][] arr)
           {
-               BubleSort(ref arr, TypeOfSort.increase, ParamOfSort.sum);
+               BubbleSort(ref arr, TypeOfSort.increase, ParamOfSort.sum);
           }
           
           public static void BubbleSortOfSumRowsDec(ref int[][] arr)
           {
-               BubleSort(ref arr, TypeOfSort.decrease, ParamOfSort.sum);
+               BubbleSort(ref arr, TypeOfSort.decrease, ParamOfSort.sum);
           }
           #endregion
 
           #region Sorting by max element
           public static void BubbleSortOfMaxElemInc(ref int[][] arr)
           {
-               BubleSort(ref arr, TypeOfSort.increase, ParamOfSort.maxElem);
+               BubbleSort(ref arr, TypeOfSort.increase, ParamOfSort.maxElem);
           }
 
           public static void BubbleSortOfMaxElemDec(ref int[][] arr)
           {
-               BubleSort(ref arr, TypeOfSort.decrease, ParamOfSort.maxElem);
+               BubbleSort(ref arr, TypeOfSort.decrease, ParamOfSort.maxElem);
           }
           #endregion
 
           #region Sorting by min element
           public static void BubbleSortOfMinElemInc(ref int[][] arr)
           {
-               BubleSort(ref arr, TypeOfSort.increase, ParamOfSort.minElem);
+               BubbleSort(ref arr, TypeOfSort.increase, ParamOfSort.minElem);
           }
 
           public static void BubbleSortOfMinElemDec(ref int[][] arr)
           {
-               BubleSort(ref arr, TypeOfSort.decrease, ParamOfSort.minElem);
+               BubbleSort(ref arr, TypeOfSort.decrease, ParamOfSort.minElem);
           }
           #endregion
 
@@ -72,7 +72,7 @@ namespace BubbleSort
           /// <param name="param">
           /// By sums or max elements or min elements.
           /// </param>
-          private static void BubleSort(ref int[][] arr, TypeOfSort type, ParamOfSort param)
+          private static void BubbleSort(ref int[][] arr, TypeOfSort type, ParamOfSort param)
           {
                if(arr == null)
                     throw new ArgumentException(null);
