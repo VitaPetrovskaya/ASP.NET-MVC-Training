@@ -26,36 +26,36 @@ namespace BubbleSort
           #region Sorting by sums
           public static void BubbleSortOfSumRowsInc(ref int[][] arr)
           {
-               BubleSortBySum(ref arr, TypeOfSort.increase, ParamOfSort.sum);
+               BubleSort(ref arr, TypeOfSort.increase, ParamOfSort.sum);
           }
           
           public static void BubbleSortOfSumRowsDec(ref int[][] arr)
           {
-               BubleSortBySum(ref arr, TypeOfSort.decrease, ParamOfSort.sum);
+               BubleSort(ref arr, TypeOfSort.decrease, ParamOfSort.sum);
           }
           #endregion
 
           #region Sorting by max element
           public static void BubbleSortOfMaxElemInc(ref int[][] arr)
           {
-               BubleSortBySum(ref arr, TypeOfSort.increase, ParamOfSort.maxElem);
+               BubleSort(ref arr, TypeOfSort.increase, ParamOfSort.maxElem);
           }
 
           public static void BubbleSortOfMaxElemDec(ref int[][] arr)
           {
-               BubleSortBySum(ref arr, TypeOfSort.decrease, ParamOfSort.maxElem);
+               BubleSort(ref arr, TypeOfSort.decrease, ParamOfSort.maxElem);
           }
           #endregion
 
           #region Sorting by min element
           public static void BubbleSortOfMinElemInc(ref int[][] arr)
           {
-               BubleSortBySum(ref arr, TypeOfSort.increase, ParamOfSort.minElem);
+               BubleSort(ref arr, TypeOfSort.increase, ParamOfSort.minElem);
           }
 
           public static void BubbleSortOfMinElemDec(ref int[][] arr)
           {
-               BubleSortBySum(ref arr, TypeOfSort.decrease, ParamOfSort.minElem);
+               BubleSort(ref arr, TypeOfSort.decrease, ParamOfSort.minElem);
           }
           #endregion
 
@@ -72,7 +72,7 @@ namespace BubbleSort
           /// <param name="param">
           /// By sums or max elements or min elements.
           /// </param>
-          private static void BubleSortBySum(ref int[][] arr, TypeOfSort type, ParamOfSort param)
+          private static void BubleSort(ref int[][] arr, TypeOfSort type, ParamOfSort param)
           {
                if(arr == null)
                     throw new ArgumentException(null);
