@@ -11,7 +11,7 @@ namespace Tests
      [TestFixture]
      public class NUnitTests
      {
-          private Book checkingBook;
+          private Book checkingBook, nullBook;
           [SetUp]
           public void Init()
           {
@@ -46,6 +46,18 @@ namespace Tests
           public void CheckTitleYearPublishFormat()
           {
                Assert.AreEqual("Book record: Преступление и наказание, 1976, Солнышко", checkingBook.ToString(new TitleYearPublishStringFormat()));
+          }
+
+          [Test]
+          public void CheckExtension()
+          {
+               Assert.AreEqual("Книга Преступление и наказание автор Достоевский. Издательством Солнышко она была напечатана в 1976. Всего 300 страниц.", checkingBook.GetBookDescription());
+          }
+
+          [Test]
+          public void CheckExtensionNull()
+          {
+               Assert.Throws<ArgumentNullException>(() => nullBook.GetBookDescription());
           }
      }
 }
