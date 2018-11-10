@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BookLibrary
 {
-     public class FullStringFormat: IStringFormat
+     /// <summary>
+     /// Present info about book in form: "Book record: Author, Title, Year, Publisher"
+     /// </summary>
+     public class FullStringFormat : IStringFormat
      {
           public string PresentToString(Book book)
           {

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace StringExtension
 {
-     interface IConvertNumber
+     /// <summary>
+     /// Interface for presentation number to decimal system from another.
+     /// </summary>
+     public interface IConvertNumber
      {
           int ConvertToDecimal(string str);
      }

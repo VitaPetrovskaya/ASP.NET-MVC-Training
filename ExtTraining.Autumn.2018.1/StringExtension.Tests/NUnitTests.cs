@@ -8,9 +8,12 @@ using StringExtension;
 
 namespace NumberConvertTest
 {
-    [TestFixture]
-    public class NUnitTests
-    {
+     /// <summary>
+     /// Test converting string to decimal number.
+     /// </summary>
+     [TestFixture]
+     public class NUnitTests
+     {
           [Test]
           public void StringToDecimal_NullString_ThrowsArgumentNullException()
             => Assert.Throws<ArgumentNullException>(() => ((string)null).ToDecimal(2));
@@ -86,7 +89,6 @@ namespace NumberConvertTest
           {
                Assert.Throws<ArgumentException>(() => "899989".ToDecimal(4));
           }
-
 
           [TestCase("543210", ExpectedResult = 181896)]
           public int CheckOctal(string binary)

@@ -6,8 +6,20 @@ using System.Threading.Tasks;
 
 namespace StringExtension
 {
-     class ToDecimalFrom11 : IConvertNumber
+     /// <summary>
+     /// Convert number to decimal system from string.
+     /// </summary>
+     public class ToDecimalFrom11 : IConvertNumber
      {
+          /// <summary>
+          /// Convert number from string.
+          /// </summary>
+          /// <param name="str">
+          /// Input string .
+          /// </param>
+          /// <returns>
+          /// Decimal number.
+          /// </returns>
           public int ConvertToDecimal(string str)
           {
                checked
@@ -17,32 +29,85 @@ namespace StringExtension
                     Array.Reverse(array);
                     int result = 0;
                     for (int i = 0; i < array.Length; i++)
+                    {
                          if (i == 0)
                          {
                               if (array[i] != '0')
+                              {
                                    result += 1;
+                              }
                          }
                          else
                          {
-                              if (array[i] == '1') result += (int)Math.Pow(11, i);
-                              if (array[i] == '2') result += 2 * (int)Math.Pow(11, i);
-                              if (array[i] == '3') result += 3 * (int)Math.Pow(11, i);
-                              if (array[i] == '4') result += 4 * (int)Math.Pow(11, i);
-                              if (array[i] == '5') result += 5 * (int)Math.Pow(11, i);
-                              if (array[i] == '6') result += 6 * (int)Math.Pow(11, i);
-                              if (array[i] == '7') result += 7 * (int)Math.Pow(11, i);
-                              if (array[i] == '8') result += 8 * (int)Math.Pow(11, i);
-                              if (array[i] == '9') result += 9 * (int)Math.Pow(11, i);
-                              if (array[i] == 'A') result += 10 * (int)Math.Pow(11, i);
+                              if (array[i] == '1')
+                              {
+                                   result += (int)Math.Pow(11, i);
+                              }
+
+                              if (array[i] == '2')
+                              {
+                                   result += 2 * (int)Math.Pow(11, i);
+                              }
+
+                              if (array[i] == '3')
+                              {
+                                   result += 3 * (int)Math.Pow(11, i);
+                              }
+
+                              if (array[i] == '4')
+                              {
+                                   result += 4 * (int)Math.Pow(11, i);
+                              }
+
+                              if (array[i] == '5')
+                              {
+                                   result += 5 * (int)Math.Pow(11, i);
+                              }
+
+                              if (array[i] == '6')
+                              {
+                                   result += 6 * (int)Math.Pow(11, i);
+                              }
+
+                              if (array[i] == '7')
+                              {
+                                   result += 7 * (int)Math.Pow(11, i);
+                              }
+
+                              if (array[i] == '8')
+                              {
+                                   result += 8 * (int)Math.Pow(11, i);
+                              }
+
+                              if (array[i] == '9')
+                              {
+                                   result += 9 * (int)Math.Pow(11, i);
+                              }
+
+                              if (array[i] == 'A')
+                              {
+                                   result += 10 * (int)Math.Pow(11, i);
+                              }
                          }
+                    }
+
                     return result;
                }
           }
 
+          /// <summary>
+          /// Check input string.
+          /// </summary>
+          /// <param name="str">
+          /// String containing number.
+          /// </param>
           private void CheckInput(string str)
           {
                if (str == null)
-                    throw new ArgumentException($"Invalid {nameof(str)}");
+               {
+                    throw new ArgumentNullException();
+               }
+
                string new_str = str;
                new_str = new_str.Replace("A", string.Empty);
                new_str = new_str.Replace("9", string.Empty);
@@ -55,8 +120,10 @@ namespace StringExtension
                new_str = new_str.Replace("2", string.Empty);
                new_str = new_str.Replace("1", string.Empty);
                new_str = new_str.Replace("0", string.Empty);
-               if (new_str != "")
+               if (new_str != string.Empty)
+               {
                     throw new ArgumentException($"Invalid {nameof(str)}");
+               }
           }
      }
 }

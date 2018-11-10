@@ -66,10 +66,10 @@ namespace BookLibrary
           /// Present info about book in string.
           /// </summary>
           /// <param name="stringFormat">
-          /// Show how to present the info.
+          /// Interface variable to determine the type of description.
           /// </param>
           /// <returns>
-          /// String with info.
+          /// Description.
           /// </returns>
           public string ToString(IStringFormat stringFormat)
           {

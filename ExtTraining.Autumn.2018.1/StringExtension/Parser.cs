@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace StringExtension
 {
      /// <summary>
-     /// Class contains static method for transfering from one number system to another.
+     /// Class contains static method for transferring from one number system to another.
      /// </summary>
      public static class Parser
      {
@@ -26,13 +26,16 @@ namespace StringExtension
           public static int ToDecimal(this string source, int @base)
           {
                if (ReferenceEquals(source, null))
+               {
                     throw new ArgumentNullException();
+               }
+
                IConvertNumber convert = GetNameOfType(@base);
                return convert.ConvertToDecimal(source.ToUpper());
           }
 
           /// <summary>
-          /// Find required class for transfering.
+          /// Find required class for transferring.
           /// </summary>
           /// <param name="base">
           /// Original number system.
@@ -59,7 +62,7 @@ namespace StringExtension
                     case 14: return new ToDecimalFrom14();
                     case 15: return new ToDecimalFrom15();
                     case 16: return new ToDecimalFrom16();
-                    default: throw new ArgumentOutOfRangeException() ;
+                    default: throw new ArgumentOutOfRangeException();
                }
           }
      }

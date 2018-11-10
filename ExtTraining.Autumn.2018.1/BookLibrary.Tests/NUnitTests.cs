@@ -9,10 +9,13 @@ using NUnit.Framework;
 
 namespace BookTest
 {
-    [TestFixture]
-    public class NUnitTests
-    {
-          Book checkingBook;
+     /// <summary>
+     /// Test presenting info about book in string.
+     /// </summary>
+     [TestFixture]
+     public class NUnitTests
+     {
+          private Book checkingBook;
           [SetUp]
           public void Init()
           {
