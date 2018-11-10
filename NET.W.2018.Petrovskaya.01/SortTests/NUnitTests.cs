@@ -7,18 +7,27 @@ using NUnit.Framework;
 
 namespace SortTests
 {
-    [TestFixture]
-    public class NUnitTests
-    {
+     /// <summary>
+     /// Test sorts.
+     /// </summary>
+     [TestFixture]
+     public class NUnitTests
+     {
+          /// <summary>
+          /// Test quick sort on a normal array.
+          /// </summary>
           [Test]
           public void QuickSortTest()
           {
                int[] checkedArray = new int[] { -3, 6, 12, 7, 1001 };
-               int[] expectedArray = new int[] { -3, 6, 7, 12, 1001};
+               int[] expectedArray = new int[] { -3, 6, 7, 12, 1001 };
                Sorting.SortingArray.QuickSort(ref checkedArray);
                Assert.AreEqual(expectedArray, checkedArray);
           }
 
+          /// <summary>
+          /// Test merge sort on a normal array.
+          /// </summary>
           [Test]
           public void MergeSortTest()
           {
@@ -28,6 +37,9 @@ namespace SortTests
                Assert.AreEqual(expectedArray, checkedArray);
           }
 
+          /// <summary>
+          /// Test quick sort on incorrect arrays.
+          /// </summary>
           [Test]
           public void QuickSortExceptionTest()
           {
@@ -37,6 +49,9 @@ namespace SortTests
                Assert.Throws<ArgumentException>(() => Sorting.SortingArray.QuickSort(ref checkedArray));
           }
 
+          /// <summary>
+          /// Test merge sort on incorrect arrays.
+          /// </summary>
           [Test]
           public void MergeSortExceptionTest()
           {
@@ -45,6 +60,5 @@ namespace SortTests
                checkedArray = null;
                Assert.Throws<ArgumentException>(() => Sorting.SortingArray.MergeSort(ref checkedArray));
           }
-
      }
 }
