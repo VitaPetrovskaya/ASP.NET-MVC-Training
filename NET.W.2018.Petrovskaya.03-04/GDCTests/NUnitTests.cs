@@ -7,9 +7,21 @@ using NUnit.Framework;
 
 namespace GDCTests
 {
+     /// <summary>
+     /// Test searching GDC.
+     /// </summary>
      [TestFixture]
      public class NUnitTests
      {
+          /// <summary>
+          /// Check Euclidean algorithm in correct numbers.
+          /// </summary>
+          /// <param name="nums">
+          /// Input numbers.
+          /// </param>
+          /// <returns>
+          /// GDC.
+          /// </returns>
           [TestCase(111, 100, 10, 43, 37, 8, ExpectedResult = 1)]
           [TestCase(44, 55, 0, 99, 110, ExpectedResult = 11)]
           [TestCase(2, 4, 8, 16, 32, 64, 128, 256, ExpectedResult = 2)]
@@ -18,7 +30,16 @@ namespace GDCTests
                TimeSpan time = new TimeSpan();
                return GreatestCommonDivisor.GCD.GetGDCEuclidean(out time, nums);
           }
-          
+
+          /// <summary>
+          /// Check Binary Euclidean algorithm in correct numbers.
+          /// </summary>
+          /// <param name="nums">
+          /// Input numbers.
+          /// </param>
+          /// <returns>
+          /// GDC.
+          /// </returns>
           [TestCase(111, 100, 10, 43, 37, 8, ExpectedResult = 1)]
           [TestCase(44, 55, 0, 99, 110, ExpectedResult = 11)]
           [TestCase(2, 4, 8, 16, 32, 64, 128, 256, ExpectedResult = 2)]
@@ -28,6 +49,15 @@ namespace GDCTests
                return GreatestCommonDivisor.GCD.GetGDCBinaryEuclidean(out time, nums);
           }
 
+          /// <summary>
+          /// Check Euclidean algorithm in incorrect numbers.
+          /// </summary>
+          /// <param name="nums">
+          /// Input numbers.
+          /// </param>
+          /// <returns>
+          /// GDC.
+          /// </returns>
           [Test]
           public void FindEuclideanGCDTestException()
           {
@@ -36,6 +66,15 @@ namespace GDCTests
                Assert.Throws<ArgumentException>(() => GreatestCommonDivisor.GCD.GetGDCEuclidean(out time, nums));
           }
 
+          /// <summary>
+          /// Check Binary Euclidean algorithm in incorrect numbers.
+          /// </summary>
+          /// <param name="nums">
+          /// Input numbers.
+          /// </param>
+          /// <returns>
+          /// GDC.
+          /// </returns>
           [Test]
           public void FindBinaryEuclideanGCDTestException()
           {

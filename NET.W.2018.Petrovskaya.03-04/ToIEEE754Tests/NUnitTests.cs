@@ -7,6 +7,9 @@ using NUnit.Framework;
 
 namespace ToIEEE754Tests
 {
+     /// <summary>
+     /// Test representation of a number in IEEE754 format.
+     /// </summary>
      [TestFixture]
      public class NUnitTests
      {
@@ -28,9 +31,9 @@ namespace ToIEEE754Tests
           "1111111111110000000000000000000000000000000000000000000000000000")]
           [TestCase(double.PositiveInfinity, ExpectedResult =
           "0111111111110000000000000000000000000000000000000000000000000000")]
-          [TestCase(-0.0, ExpectedResult = 
+          [TestCase(-0.0, ExpectedResult =
           "1000000000000000000000000000000000000000000000000000000000000000")]
-          [TestCase(0.0, ExpectedResult = 
+          [TestCase(0.0, ExpectedResult =
           "0000000000000000000000000000000000000000000000000000000000000000")]
           public string ConvertTest(double value)
           {
