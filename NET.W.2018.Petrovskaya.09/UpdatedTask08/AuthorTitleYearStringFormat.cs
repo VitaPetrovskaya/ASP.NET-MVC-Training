@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace UpdatingPreviousTasks
 {
+     /// <summary>
+     /// Present description of book in format: "Book record: Author, Title, Year"
+     /// </summary>
      public class AuthorTitleYearStringFormat : IStringFormat
      {
           public string PresentToString(Book book)

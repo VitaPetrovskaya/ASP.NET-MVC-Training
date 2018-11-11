@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace UpdatingPreviousTasks
 {
+     /// <summary>
+     /// Interface for book description.
+     /// </summary>
      public interface IStringFormat
      {
           string PresentToString(Book book);

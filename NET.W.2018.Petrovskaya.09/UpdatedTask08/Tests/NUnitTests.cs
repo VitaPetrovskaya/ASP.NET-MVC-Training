@@ -8,6 +8,9 @@ using UpdatingPreviousTasks;
 
 namespace Tests
 {
+     /// <summary>
+     /// Test presenting info about book.
+     /// </summary>
      [TestFixture]
      public class NUnitTests
      {
