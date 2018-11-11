@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 
 namespace BankAccount
 {
-     interface IAccountGradation
+     /// <summary>
+     /// Interface to count bonuses for different accounts.
+     /// </summary>
+     public interface IAccountGradation
      {
           int BalanceCost { get; set; }
+
           int PuttingCost { get; set; }
+
           string GetGradation();
+
           int PutMoney(double money);
+
           int TakeMoney(double money);
      }
 }

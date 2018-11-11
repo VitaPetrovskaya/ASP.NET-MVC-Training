@@ -7,23 +7,33 @@ using System.Threading.Tasks;
 
 namespace Book
 {
-     class BookListStorage
+     public class BookListStorage
      {
           private string path;
-          public string Path
-          {
-               get { return path; }
-               set
-               {
-                    if(value == null || value == "")
-                         throw new ArgumentException();
-                    path = value;
-               }
-          }
+
           public BookListStorage(string path)
           {
                Path = path;
           }
+
+          public string Path
+          {
+               get
+               {
+                    return path;
+               }
+
+               set
+               {
+                    if (value == null || value == string.Empty)
+                    {
+                         throw new ArgumentException();
+                    }
+
+                    path = value;
+               }
+          }
+
           /// <summary>
           /// Read data about books from file.
           /// </summary>
@@ -49,8 +59,10 @@ namespace Book
                          books.Add(book);
                     }
                }
+
                return books;
           }
+
           /// <summary>
           /// Save current list of books in binary file.
           /// </summary>
@@ -61,6 +73,7 @@ namespace Book
                {
                     System.IO.File.WriteAllText(Path, string.Empty);
                }
+
                using (BinaryWriter writer = new BinaryWriter(File.Open(Path, FileMode.OpenOrCreate)))
                {
                     foreach (Book book in books)

@@ -6,22 +6,36 @@ using System.Threading.Tasks;
 
 namespace Book
 {
-     class FindBookByTitle: IFindBookBy
+     public class FindBookByTitle : IFindBookBy
      {
-          public string title;
-          public List<Book> listOfBooks;
+          private string title;
+          private List<Book> listOfBooks;
 
           public FindBookByTitle(string input_title)
           {
                title = input_title;
           }
 
+          /// <summary>
+          /// Search book in list by input title.
+          /// </summary>
+          /// <param name="books">
+          /// List of books.
+          /// </param>
+          /// <returns>
+          /// Necessary book.
+          /// </returns>
           public Book FindBookByTag(List<Book> books)
           {
                listOfBooks = books;
                foreach (Book bookInList in listOfBooks)
+               {
                     if (bookInList.Title == title)
+                    {
                          return bookInList;
+                    }
+               }
+
                return null;
           }
      }

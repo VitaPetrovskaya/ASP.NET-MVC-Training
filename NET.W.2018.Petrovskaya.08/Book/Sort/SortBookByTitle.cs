@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace Book
 {
-     class SortBooksByTitle: ISortBooksBy
+     public class SortBooksByTitle : ISortBooksBy
      {
-          public List<Book> listOfBooks;
+          private List<Book> listOfBooks;
 
+          /// <summary>
+          /// Sort books by title in alphabet order.
+          /// </summary>
+          /// <param name="books"></param>
+          /// <returns></returns>
           public IEnumerable<Book> SortBooksByTag(List<Book> books)
           {
                listOfBooks = books;

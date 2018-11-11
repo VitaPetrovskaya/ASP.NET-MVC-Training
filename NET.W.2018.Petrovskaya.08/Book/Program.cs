@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Book
 {
-     class Program
+     public class Program
      {
-          static void Main(string[] args)
+          /// <summary>
+          /// Test searching and sorting of books.
+          /// </summary>
+          /// <param name="args"></param>
+          public static void Main(string[] args)
           {
                Book b1 = new Book("ISBN978-5-98901-592-9", "Достоевский", "Преступление и наказание", "Солнышко", 1976, 300, 12);
                Book b2 = new Book("ISBN978-5-99025-792-4", "Достоевский", "Идиот", "Звезда", 1979, 500, 23);
@@ -21,8 +25,11 @@ namespace Book
                service.AddBook(b1);
                service.AddBook(b2);
                service.SortBooksByTag(new SortBooksByTitle());
-               foreach (Book b in service.listOfBooks)
+               foreach (Book b in service.ListOfBooks)
+               {
                     Console.WriteLine(b.Title);
+               }
+
                Console.WriteLine(service.FindBookByTag(new FindBookByTitle("Идиот")).ToString());
                service.SaveToStorage();
                Console.ReadLine();

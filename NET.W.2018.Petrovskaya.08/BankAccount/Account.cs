@@ -7,46 +7,16 @@ using System.Threading.Tasks;
 
 namespace BankAccount
 {
-     class Account
+     public class Account
      {
           private long number;
-          public long Number
-          {
-               get { return number; }
-               set
-               {
-                    if (value < 0)
-                         throw new ArgumentException($"Invalid {nameof(value)}");
-                    number = value;
-               }
-          }
           private string ownerName;
-          public string OwnerName
-          {
-               get { return ownerName; }
-               set { ownerName = value ?? throw new ArgumentException($"Invalid {nameof(value)}"); }
-          }
           private string ownerSurname;
-          public string OwnerSurname
-          {
-               get { return ownerSurname; }
-               set { ownerSurname = value ?? throw new ArgumentException($"Invalid {nameof(value)}"); }
-          }
           private double amount;
-          public double Amount
-          {
-               get { return amount; }
-               set
-               {
-                    if (value < 0)
-                         throw new ArgumentException($"Invalid {nameof(value)}");
-                    amount = value;
-               }
-          }
-          public int bonus;
-          public IAccountGradation gradation;
           private string infoFile = @"C:\Disk-D\new\Info.bin";
           private bool closeAccount;
+          private int bonus;
+          private IAccountGradation gradation;
 
           public Account(long input_number, string input_name, string input_surname, double input_amount, int input_bonus, IAccountGradation input_gradation)
           {
@@ -64,10 +34,65 @@ namespace BankAccount
                Number = new Random().Next(1, int.MaxValue);
                OwnerName = input_name;
                OwnerSurname = input_surname;
-               Amount = 0; 
+               Amount = 0;
                bonus = 0;
                gradation = input_gradation;
           }
+
+          public int Bonus
+          {
+               get { return bonus; }
+               private set { }
+          }
+
+          public long Number
+          {
+               get
+               {
+                    return number;
+               }
+
+               set
+               {
+                    if (value < 0)
+                    {
+                         throw new ArgumentException($"Invalid {nameof(value)}");
+                    }
+
+                    number = value;
+               }
+          }
+
+          public string OwnerName
+          {
+               get { return ownerName; }
+               set { ownerName = value ?? throw new ArgumentException($"Invalid {nameof(value)}"); }
+          }
+
+          public string OwnerSurname
+          {
+               get { return ownerSurname; }
+               set { ownerSurname = value ?? throw new ArgumentException($"Invalid {nameof(value)}"); }
+          }
+
+          public double Amount
+          {
+               get
+               {
+                    return amount;
+               }
+
+               set
+               {
+                    if (value < 0)
+                    {
+                         throw new ArgumentException($"Invalid {nameof(value)}");
+                    }
+
+                    amount = value;
+               }
+          }
+
           /// <summary>
           /// Add money to amount of account.
           /// </summary>
@@ -76,12 +101,16 @@ namespace BankAccount
           /// </param>
           public void PutMoney(double money)
           {
-               if(closeAccount)
+               if (closeAccount)
+               {
                     throw new ArgumentException();
+               }
+
                this.Amount += money;
                bonus += gradation.PutMoney(money);
                SaveToFile();
           }
+
           /// <summary>
           /// Take money from amount of account.
           /// </summary>
@@ -91,7 +120,10 @@ namespace BankAccount
           public void TakeMoney(double money)
           {
                if (closeAccount)
+               {
                     throw new ArgumentException();
+               }
+
                this.Amount -= money;
                bonus -= gradation.TakeMoney(money);
                SaveToFile();
@@ -101,6 +133,7 @@ namespace BankAccount
           {
                return new Account(this.OwnerName, this.OwnerSurname, input_gradation);
           }
+
           /// <summary>
           /// Close account - taking and put ting are not available.
           /// </summary>
@@ -109,6 +142,7 @@ namespace BankAccount
                closeAccount = true;
                this.Amount = 0;
           }
+
           /// <summary>
           /// Find account if binary file for changing data.
           /// </summary>
@@ -133,22 +167,30 @@ namespace BankAccount
                          {
                               IAccountGradation gradation = new BaseGradation();
                          }
+
                          if (nameOfGradation == "Gold")
                          {
                               IAccountGradation gradation = new GoldGradation();
                          }
+
                          if (nameOfGradation == "Platinum")
                          {
                               IAccountGradation gradation = new PlatinumGradation();
                          }
+
                          Account account = new Account(num, name, surname, amount, bonus, gradation);
                          if (this.Equals(account))
+                         {
                               return position;
+                         }
+
                          position = reader.BaseStream.Length;
                     }
                }
+
                return position;
           }
+
           /// <summary>
           /// Save changes in binary file.
           /// </summary>

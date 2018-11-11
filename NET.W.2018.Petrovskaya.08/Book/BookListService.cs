@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Book
 {
-     class BookListService
+     public class BookListService
      {
-          public List<Book> listOfBooks = new List<Book>();
+          private List<Book> listOfBooks = new List<Book>();
           private BookListStorage bookStorage;
 
           public BookListService(BookListStorage storage)
@@ -17,19 +17,31 @@ namespace Book
                {
                     throw new ArgumentException();
                }
+
                bookStorage = storage;
                listOfBooks = bookStorage.GetBookList();
           }
+
+          public List<Book> ListOfBooks
+          {
+               get { return listOfBooks; }
+               private set { }
+          }
+
           /// <summary>
           /// Add book to list.
           /// </summary>
           /// <param name="book"></param>
           public void AddBook(Book book)
           {
-               if(IsExist(book))
+               if (IsExist(book))
+               {
                     throw new ArgumentException();
+               }
+
                listOfBooks.Add(book);
           }
+
           /// <summary>
           /// Remove book from list.
           /// </summary>
@@ -37,9 +49,13 @@ namespace Book
           public void RemoveBook(Book book)
           {
                if (IsExist(book))
+               {
                     throw new ArgumentException();
+               }
+
                listOfBooks.Remove(book);
           }
+
           /// <summary>
           /// Find book by criterial with the help of interface variable.
           /// </summary>
@@ -52,9 +68,13 @@ namespace Book
           public Book FindBookByTag(IFindBookBy criterion)
           {
                if (criterion == null)
+               {
                     throw new ArgumentNullException();
+               }
+
                return criterion.FindBookByTag(listOfBooks);
           }
+
           /// <summary>
           /// Sort list of books by criterion.
           /// </summary>
@@ -64,9 +84,21 @@ namespace Book
           public void SortBooksByTag(ISortBooksBy criterion)
           {
                if (criterion == null)
+               {
                     throw new ArgumentNullException();
+               }
+
                listOfBooks = criterion.SortBooksByTag(listOfBooks).ToList();
           }
+
+          /// <summary>
+          /// Save list to file.
+          /// </summary>
+          public void SaveToStorage()
+          {
+               bookStorage.Save(listOfBooks);
+          }
+
           /// <summary>
           /// Check existence of the book.
           /// </summary>
@@ -75,18 +107,19 @@ namespace Book
           private bool IsExist(Book book)
           {
                if (book == null)
+               {
                     return false;
+               }
+
                foreach (Book bookInList in listOfBooks)
+               {
                     if (book.Equals(bookInList))
+                    {
                          return true;
+                    }
+               }
+
                return false;
-          }
-          /// <summary>
-          /// Save list to file.
-          /// </summary>
-          public void SaveToStorage()
-          {
-               bookStorage.Save(listOfBooks);
           }
      }
 }
