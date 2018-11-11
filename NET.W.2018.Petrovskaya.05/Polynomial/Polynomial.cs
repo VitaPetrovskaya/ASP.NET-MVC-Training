@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace Polynomial
 {
      /// <summary>
-     /// Description of Polinomial.
+     /// Description of Polynomial.
      /// </summary>
-     class Polynomial
+     public class Polynomial
      {
           private readonly double[] coefficients;
 
@@ -21,7 +21,7 @@ namespace Polynomial
           /// </param>
           public Polynomial(double[] receivedCoefficients)
           {
-               if(CheckCoef(receivedCoefficients))
+               if (CheckCoef(receivedCoefficients))
                {
                     coefficients = new double[receivedCoefficients.Length];
                     for (int i = 0; i < receivedCoefficients.Length; i++)
@@ -32,24 +32,36 @@ namespace Polynomial
           }
 
           /// <summary>
-          /// Check coefficients.
+          /// Property to get length of polynomial.
           /// </summary>
-          /// <param name="checkCoefficients"></param>
-          /// <returns>
-          /// True if coefficients are correct.
-          /// False if coefficients are incorrect.
-          /// </returns>
-          private bool CheckCoef(double[] checkCoefficients)
+          public int Length
           {
-               if (checkCoefficients.Length == 0 )
+               get
                {
-                    return false;
+                    return coefficients.Length;
                }
-               if (checkCoefficients == null)
+          }
+
+          /// <summary>
+          /// Property to access coefficients.
+          /// </summary>
+          /// <param name="index">
+          /// Index of necessary coefficient.
+          /// </param>
+          /// <returns>
+          /// Necessary coefficient.
+          /// </returns>
+          public double this[int index]
+          {
+               get
                {
-                    return false;
+                    if (index < 0 || index >= coefficients.Length)
+                    {
+                         throw new ArgumentOutOfRangeException();
+                    }
+
+                    return coefficients[index];
                }
-               return true;
           }
 
           /// <summary>
@@ -68,37 +80,8 @@ namespace Polynomial
                {
                     result += coefficients[i] * Math.Pow(x, i);
                }
+
                return result;
-          }
-
-          /// <summary>
-          /// Property to access coefficients.
-          /// </summary>
-          /// <param name="index">
-          /// Index of necessary coefficient.
-          /// </param>
-          /// <returns>
-          /// Necessary coefficient.
-          /// </returns>
-          public double this[int index]
-          {
-               get
-               {
-                    if (index < 0 || index >= coefficients.Length)
-                         throw new ArgumentOutOfRangeException();
-                    return coefficients[index];
-               }
-          }
-
-          /// <summary>
-          /// Property to get length of polynomial.
-          /// </summary>
-          public int Length
-          {
-               get
-               {
-                    return coefficients.Length;
-               }
           }
 
           /// <summary>
@@ -110,8 +93,6 @@ namespace Polynomial
                return new Polynomial(coefficients);
           }
 
-          #region Override methods
-
           /// <summary>
           /// Present polynomial as a string.
           /// </summary>
@@ -120,33 +101,45 @@ namespace Polynomial
           /// </returns>
           public override string ToString()
           {
-               string result = "";
+               string result = string.Empty;
                for (int i = Length - 1; i >= 0; i--)
                {
                     if (i != Length - 1)
                     {
-                         if(i == 0)
+                         if (i == 0)
                          {
                               if (coefficients[i] > 0)
+                              {
                                    result += "+ " + coefficients[i].ToString();
+                              }
                               else
+                              {
                                    result += "- " + Math.Abs(coefficients[i]).ToString();
+                              }
                          }
                          else
                          {
                               if (i == 1)
                               {
                                    if (coefficients[i] > 0)
+                                   {
                                         result += "+ " + coefficients[i].ToString() + "*x ";
+                                   }
                                    else
+                                   {
                                         result += "- " + Math.Abs(coefficients[i]).ToString() + "*x ";
+                                   }
                               }
                               else
                               {
                                    if (coefficients[i] > 0)
+                                   {
                                         result += "+ " + coefficients[i].ToString() + "*x^" + i.ToString() + " ";
+                                   }
                                    else
+                                   {
                                         result += "- " + Math.Abs(coefficients[i]).ToString() + "*x^" + i.ToString() + " ";
+                                   }
                               }
                          }
                     }
@@ -155,6 +148,7 @@ namespace Polynomial
                          result += " " + coefficients[i].ToString() + "*x^" + i.ToString() + " ";
                     }
                }
+
                return result;
           }
 
@@ -172,24 +166,24 @@ namespace Polynomial
           /// <returns>
           /// True if coefficients are the same. False if they are not the same.
           /// </returns>
-          public override bool Equals(Object obj)
+          public override bool Equals(object obj)
           {
                Polynomial polylomial = obj as Polynomial;
                if (obj == null)
                {
                     return false;
                }
-               for(int i = 0; i < Length; i++)
+
+               for (int i = 0; i < Length; i++)
                {
-                    if(polylomial[i] != coefficients[i])
+                    if (polylomial[i] != coefficients[i])
+                    {
                          return false;
+                    }
                }
+
                return true;
           }
-
-          #endregion
-
-          #region Overloaded operators
 
           /// <summary>
           /// Sum of two polynomials.
@@ -206,18 +200,54 @@ namespace Polynomial
           public static Polynomial operator +(Polynomial p1, Polynomial p2)
           {
                if (p1 == null && p2 == null)
+               {
                     return null;
+               }
+
                if (p1 != null && p2 == null)
+               {
                     return p1;
+               }
+
                if (p1 == null && p2 != null)
+               {
                     return p2;
+               }
 
                double[] newCoefficients;
                if (p1.Length < p2.Length)
+               {
                     newCoefficients = GetAddCoef(p1, p2);
+               }
                else
+               {
                     newCoefficients = GetAddCoef(p2, p1);
+               }
+
                return new Polynomial(newCoefficients);
+          }
+
+          /// <summary>
+          /// Check coefficients.
+          /// </summary>
+          /// <param name="checkCoefficients"></param>
+          /// <returns>
+          /// True if coefficients are correct.
+          /// False if coefficients are incorrect.
+          /// </returns>
+          private bool CheckCoef(double[] checkCoefficients)
+          {
+               if (checkCoefficients.Length == 0)
+               {
+                    return false;
+               }
+
+               if (checkCoefficients == null)
+               {
+                    return false;
+               }
+
+               return true;
           }
 
           /// <summary>
@@ -231,11 +261,19 @@ namespace Polynomial
           private static double[] GetAddCoef(Polynomial minPolynomial, Polynomial maxPolynomial)
           {
                double[] result = new double[maxPolynomial.Length];
-               for(int i = 0; i < minPolynomial.Length; i++)
+               for (int i = 0; i < minPolynomial.Length; i++)
+               {
                     result[i] = minPolynomial[i] + maxPolynomial[i];
+               }
+
                if (minPolynomial.Length < result.Length)
+               {
                     for (int j = minPolynomial.Length; j < result.Length; j++)
+                    {
                          result[j] = maxPolynomial[j];
+                    }
+               }
+
                return result;
           }
 
@@ -255,16 +293,26 @@ namespace Polynomial
           {
                double[] newCoefficients;
                if (p1 == null && p2 == null)
+               {
                     return null;
+               }
+
                if (p1 != null && p2 == null)
+               {
                     return p1;
+               }
+
                if (p1 == null && p2 != null)
                {
                     newCoefficients = new double[p2.Length];
                     for (int i = 0; i < p2.Length; i++)
-                         newCoefficients[i] = p2[i]*(-1);
+                    {
+                         newCoefficients[i] = p2[i] * (-1);
+                    }
+
                     return p2;
                }
+
                newCoefficients = GetDeleteCoef(p1, p2);
                return new Polynomial(newCoefficients);
           }
@@ -284,19 +332,29 @@ namespace Polynomial
                {
                     result = new double[p1.Length];
                     for (int i = 0; i < p2.Length; i++)
+                    {
                          result[i] = p1[i] - p2[i];
+                    }
+
                     for (int j = p2.Length; j < result.Length; j++)
+                    {
                          result[j] = p1[j];
+                    }
                }
                else
                {
                     result = new double[p2.Length];
                     for (int i = 0; i < p1.Length; i++)
+                    {
                          result[i] = p1[i] - p2[i];
+                    }
+
                     for (int j = p1.Length; j < result.Length; j++)
-                         result[j] = p2[j]*(-1);
+                    {
+                         result[j] = p2[j] * (-1);
+                    }
                }
-               
+
                return result;
           }
 
@@ -311,14 +369,21 @@ namespace Polynomial
           public static Polynomial operator *(Polynomial p1, Polynomial p2)
           {
                if (p1 == null && p2 == null)
+               {
                     return null;
+               }
+
                if (p1 != null && p2 == null)
+               {
                     return p1;
+               }
+
                if (p1 == null && p2 != null)
+               {
                     return p2;
+               }
 
                double[] newCoefficients = new double[p1.Length + p2.Length - 1];
-
                for (int i = 0; i < p1.Length; i++)
                {
                     for (int j = 0; j < p2.Length; j++)
@@ -326,6 +391,7 @@ namespace Polynomial
                          newCoefficients[i + j] += p1[i] * p2[j];
                     }
                }
+
                return new Polynomial(newCoefficients);
           }
 
@@ -340,15 +406,18 @@ namespace Polynomial
           public static bool operator ==(Polynomial p1, Polynomial p2)
           {
                if ((object)p1 == null || (object)p2 == null || p1.Length != p2.Length)
+               {
                     return false;
-               
-               for(int i = 0; i < p1.Length; i++)
+               }
+
+               for (int i = 0; i < p1.Length; i++)
                {
                     if (p1[i] != p2[i])
                     {
                          return false;
                     }
                }
+
                return true;
           }
 
@@ -363,7 +432,9 @@ namespace Polynomial
           public static bool operator !=(Polynomial p1, Polynomial p2)
           {
                if (p1.Length != p2.Length || p1 == null || p2 == null)
+               {
                     return true;
+               }
 
                for (int i = 0; i < p1.Length; i++)
                {
@@ -372,10 +443,8 @@ namespace Polynomial
                          return true;
                     }
                }
+
                return false;
           }
-
-          #endregion
-
      }
 }

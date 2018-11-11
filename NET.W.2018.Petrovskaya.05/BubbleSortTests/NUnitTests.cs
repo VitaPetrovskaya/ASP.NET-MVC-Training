@@ -7,9 +7,15 @@ using NUnit.Framework;
 
 namespace BubbleSortTests
 {
+     /// <summary>
+     /// Test bubble sort.
+     /// </summary>
      [TestFixture]
      public class NUnitTests
      {
+          /// <summary>
+          /// Check sort by sum of rows.
+          /// </summary>
           [Test]
           public void SortBySumTest()
           {
@@ -22,6 +28,9 @@ namespace BubbleSortTests
                CollectionAssert.AreEqual(expectedArrayInc, checkedArray);
           }
 
+          /// <summary>
+          /// Check sort by max element in rows.
+          /// </summary>
           [Test]
           public void SortByMaxTest()
           {
@@ -33,7 +42,10 @@ namespace BubbleSortTests
                expectedArrayInc = new int[][] { new int[] { -99, 100, 1 }, new int[] { 55, 0, 10 }, new int[] { 4, 5 } };
                CollectionAssert.AreEqual(expectedArrayInc, checkedArray);
           }
-          
+
+          /// <summary>
+          /// Check sort by min element in rows.
+          /// </summary>
           [Test]
           public void SortByMinTest()
           {
@@ -46,6 +58,9 @@ namespace BubbleSortTests
                CollectionAssert.AreEqual(expectedArrayInc, checkedArray);
           }
 
+          /// <summary>
+          /// Check sort in incorrect data.
+          /// </summary>
           [Test]
           public void ExceptionZeroArrayTest()
           {
@@ -58,6 +73,9 @@ namespace BubbleSortTests
                Assert.Throws<ArgumentException>(() => BubbleSort.ArraySorting.BubbleSortOfMinElemDec(ref checkedArray));
           }
 
+          /// <summary>
+          /// Check sort in incorrect data.
+          /// </summary>
           [Test]
           public void ExceptionNullArrayTest()
           {
