@@ -26,6 +26,11 @@ namespace BinarySearch
           /// <param name="inputSequence"></param>
           public BinarySearcher(IEnumerable<T> inputSequence)
           {
+               if (ReferenceEquals(inputSequence, null))
+               {
+                    throw new ArgumentNullException();
+               }
+
                SetSequence(inputSequence);
           }
 
@@ -44,6 +49,11 @@ namespace BinarySearch
           /// <param name="inputSequence"></param>
           public void SetSequence(IEnumerable<T> inputSequence)
           {
+               if (ReferenceEquals(inputSequence, null))
+               {
+                    throw new ArgumentNullException();
+               }
+
                int length = inputSequence.Count();
                sequense = new T[length];
                int i = 0;
@@ -86,6 +96,11 @@ namespace BinarySearch
           /// </returns>
           public int BinarySearch(T value)
           {
+               if (ReferenceEquals(value, null))
+               {
+                    throw new ArgumentNullException();
+               }
+
                return BinarySearch(sequense, value, (IComparable<T>)value);
           }
 
