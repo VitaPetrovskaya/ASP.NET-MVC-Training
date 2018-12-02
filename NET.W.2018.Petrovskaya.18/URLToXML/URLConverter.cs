@@ -7,8 +7,16 @@ using System.Xml.Linq;
 
 namespace URLToXML
 {
+     /// <summary>
+     /// Contains static methods to transform data of URL.
+     /// </summary>
      public class URLConverter
      {
+          /// <summary>
+          /// Converts info about URL in XML element.
+          /// </summary>
+          /// <param name="url"></param>
+          /// <returns></returns>
           public static XElement ConvertURLToXML(URL url)
           {
                XElement xmlElement = new XElement("urlAdress");
@@ -39,6 +47,15 @@ namespace URLToXML
                return xmlElement;
           }
 
+          /// <summary>
+          /// Transforms sequence of strings in correct form of URL segments.
+          /// </summary>
+          /// <param name="segments">
+          /// Input strings with segments.
+          /// </param>
+          /// <returns>
+          /// Correct segments.
+          /// </returns>
           public static List<string> TransformSegments(IEnumerable<string> segments)
           {
                List<string> result = new List<string>();
@@ -58,13 +75,22 @@ namespace URLToXML
                     temp = item.Replace("/", string.Empty);
                     if (temp != string.Empty)
                     {
-                         result.Add(item);
+                         result.Add(temp);
                     }
                }
 
                return result;
           }
 
+          /// <summary>
+          /// Find parameters in string.
+          /// </summary>
+          /// <param name="parameters">
+          /// String with parameters.
+          /// </param>
+          /// <returns>
+          /// List of parameters.
+          /// </returns>
           public static List<Parameter> TransformParameters(string parameters)
           {
                List<Parameter> result = new List<Parameter>();

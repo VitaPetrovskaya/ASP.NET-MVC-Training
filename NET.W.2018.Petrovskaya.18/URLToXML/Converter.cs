@@ -9,6 +9,15 @@ namespace URLToXML
 {
      public class Converter
      {
+          /// <summary>
+          /// Convert list of URLs to XML and save result in file.
+          /// </summary>
+          /// <param name="listOfUrls">
+          /// Enumerated URL sequence.
+          /// </param>
+          /// <param name="storage">
+          /// Storage file path.
+          /// </param>
           public static void URLToXML(IEnumerable<URL> listOfUrls, string storage)
           {
                XDocument document = new XDocument();

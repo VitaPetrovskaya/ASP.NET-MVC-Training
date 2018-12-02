@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace URLToXML
 {
+     /// <summary>
+     /// Part of URL.
+     /// </summary>
      public class Parameter
      {
           public Parameter(string value, string key)
